@@ -2,7 +2,7 @@
 #include <climits>
 using namespace std;
 
-/*struct node{
+struct node{
     int data;
     struct node *next;
 };
@@ -109,4 +109,4 @@ int main(){
     second_min_max();
 
     return 0;
-}*/
+}

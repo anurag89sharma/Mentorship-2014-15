@@ -2,7 +2,7 @@
 
 using namespace std;
 
-/*struct node{
+struct node{
     int data;
     struct node *next;
 };
@@ -162,4 +162,3 @@ int main()
     cout << "Current count: " <<node_count<<endl;
     return 0;
 }
-*/
