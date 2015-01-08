@@ -1,6 +1,6 @@
 #include<iostream>
 
-/*using namespace std;
+using namespace std;
 
 struct node{
     int data;
@@ -62,7 +62,7 @@ int compare_list(node* first, node *second){
 
 // See this link to understand the below code
 // http://www.geeksforgeeks.org/function-to-check-if-a-singly-linked-list-is-palindrome/
-int is_palindrome(node *root){
+int is_palindrome_old(node *root){
     struct node *slow = root, *fast = root;
     struct node *second_half, *prev = root;
     struct node *midnode = NULL;  // To handle odd size list
@@ -94,6 +94,36 @@ int is_palindrome(node *root){
     return res;
 }
 
+// Initial parameters to this function are &head and head
+bool is_palindrome_util(struct node **left, struct  node *right)
+{
+   // stop recursion when right becomes NULL
+   if (right == NULL)
+      return true;
+
+   // If sub-list is not palindrome then no need to check for current left and right, return false
+   cout<<"\nInitial Left: "<<(*left)->data<<"\tRight: "<<right->data<<endl;
+   //cout<<"Address of left: "<<&(*left)<<"\tAddress of right: "<<&right<<endl;
+   bool isp = is_palindrome_util(left, right->next);
+   if (isp == false)
+      return false;
+
+   // Check values at current left and right
+   cout<<"\nComparision Left: "<<(*left)->data<<"\tRight: "<<right->data<<endl;
+   cout<<"Address of left: "<<(*left)<<"\tAddress of right: "<<right<<endl;
+   bool isp1 = (right->data == (*left)->data);
+
+   // Move left to next node
+   *left = (*left)->next;
+
+   return isp1;
+}
+
+bool is_palindrome(struct node *head)
+{
+   return is_palindrome_util(&head, head);
+}
+
 int main(){
     node *head = NULL;
     insert_node(&head,1);
@@ -111,4 +141,4 @@ int main(){
         cout<<"List is a not a palindrome"<<endl;
     display(head);
     return 0;
-}*/
+}
